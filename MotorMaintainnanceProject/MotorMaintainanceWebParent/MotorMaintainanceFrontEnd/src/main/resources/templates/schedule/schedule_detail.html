@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - EduBook</title>
+    <script th:src="@{js/jquery-3.3.1.js}"></script>
+    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script
+            th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet"
+          th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
+
+    <link
+            th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap}"
+            rel="stylesheet">
+    <link rel="stylesheet" th:href="@{fontawesome/all.min.css}">
+    <link
+            th:href="@{https://fonts.googleapis.com/css2?family=Paytone+One&display=swap}"
+            rel="stylesheet">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/home.css}">
+    <link rel="stylesheet" th:href="@{css/contact.css}">
+    <style>
+        tr{
+            height: 50px
+        }
+        table{
+            font-size: 6rem;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <header id="header">
+        <div class="header__top">
+            <div class="container">
+                <section class="row flex">
+                    <div class="col-lg-5 col-md-0 col-sm-0 heade__top-left">
+                        <span>MotorMT - Xe máy luôn mới - Bảo dưỡng luôn kỹ</span>
+                    </div>
+
+                    <nav class="col-lg-7 col-md-0 col-sm-0 header__top-right">
+                        <ul class="header__top-list" sec:authorize="!isAuthenticated()">
+                            <li class="header__top-item"><a th:href="@{/register}"
+                                                            class="header__top-link">Đăng ký</a></li>
+                            <li class="header__top-item"><a th:href="@{/login}"
+                                                            class="header__top-link">Đăng nhập</a></li>
+                        </ul>
+                        <ul class="header__top-list" sec:authorize="isAuthenticated()">
+                            <li class="header__top-item"><a th:href="@{/customer-update}"
+                                                            class="header__top-link" sec:authentication="principal.hoten"></a></li>
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </div>
+
+        <div class="header__bottom">
+            <div class="container">
+                <section class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-12 header__logo">
+                        <h1 class="header__heading">
+                            <a href="#" class="header__logo-link"> <img style="height: 100px;"
+                                                                        th:src="@{image/logo.png}" alt="Logo" class="header__logo-img">
+                            </a>
+                        </h1>
+                    </div>
+
+                    <div class="col-lg-6 col-md-7 col-sm-0 header__search text-center"
+                         style="display: flex; justify-content: center; align-items: center;">
+                        <form class="col-lg-12 col-md-7 col-sm-0 header__search"
+                              th:action="@{/search}">
+                            <input type="search" name="keyword" class="header__search-input"
+                                   th:value="${keyword}" placeholder="Tìm kiếm...">
+                        </form>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+
+        <div class="header__nav">
+            <div class="container">
+                <section class="row">
+                    <div class="header__nav-menu-wrap col-lg-3 col-md-0 col-sm-0">
+                        <div class="header__nav-menu-title">Danh mục dịch vụ</div>
+                    </div>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <div class="header__nav col-lg-9 col-md-0 col-sm-0">
+                            <ul class="header__nav-list">
+                                <li class="header__nav-item"><a th:href="@{/customer-update}"
+                                                                class="header__nav-link">Thông tin tài khoản</a></li>
+                                <li class="header__nav-item"><a th:href="@{/order}"
+                                                                class="header__nav-link"></a>Lịch đặt</li>
+                                <li class="header__nav-item"><a th:href="@{/address_book}"
+                                                                class="header__nav-link">Đặt lịch bảo dưỡng</a></li>
+                                <li class="header__nav-item"><a id="logoutLink" href=""
+                                                                class="header__nav-link">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </th:block>
+                </section>
+            </div>
+        </div>
+    </header>
+
+    <section class="contact">
+        <div class="container">
+            <th:block sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" th:hidden="true"
+                      name="LogoutForm">
+                    <input type="submit">
+                </form>
+            </th:block>
+            <div class="row mt-4 mb-50 pc">
+                <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
+                    <ul class="menu__list">
+                        <li class="menu__item menu__item--active">
+                            <a href="#" class="menu__link">
+                                Bảo dưỡng định kỳ</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="#" class="menu__link">
+                                Rửa xe</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="#" class="menu__link">
+                                Sửa chữa lưu động</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="#" class="menu__link">
+                                Sửa chữa Giao- Nhận tại nhà</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row mt-4 mb-4">
+                <div class="col-lg-6 col-md-6 col-sm-12 contact__self">
+                    <h3 class="mb-4">Thông tin lịch đặt</h3>
+
+                    <ul class="contact__self-list" >
+                        <li class="contact__self-item">
+                            <a class="contact__self-link">Thời gian:&emsp; [[${schedule.requestTime}]]</a></li>
+                        <li class="contact__self-item">
+                            <a class="contact__self-link">Loại dịch vụ:&emsp; [[${schedule.loaidv}]]</a></li>
+                        <li class="contact__self-item">
+                            <a class="contact__self-link">Phương tiện:&emsp; [[${schedule.phuongtien}]]</a>
+                        </li>
+                        <li class="contact__self-item">
+                            <a class="contact__self-link">Thời gian đựt lịch:&emsp; [[${schedule.createAt}]]</a>
+                        </li>
+                        <li class="contact__self-item">
+                            <a class="contact__self-link">Ghi chú:&emsp; [[${schedule.notes}]]</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 contact__regist">
+                    <h3 class="mb-4">
+                        Trạng thái lịch đặt
+                    </h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Thời gian</th>
+                            <th style="max-width: 350px;">Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="track : ${schedule.scheduleTracks}">
+                            <td>[[${track.updatedTime}]]</td>
+                            <td style="word-wrap: break-word;max-width: 250px;">[[${track.notes}]]
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-slide text-center">
+        <div class="container">
+            <th:block sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" th:hidden="true"
+                      name="LogoutForm">
+                    <input type="submit">
+                </form>
+            </th:block>
+        </div>
+    </section>
+
+
+    <footer>
+        <section class="footer__top">
+            <div class="container">
+                <div class="row">
+                    <article class="footer__top-intro col-lg-6 col-md-4 col-sm-6">
+                        <h4 class="footer__top-intro-heading">Về chúng tôi</h4>
+                        <div class="footer__top-intro-content">
+                            MotorMt là địa chỉ tin cậy cho bạn khi cần bảo dưỡng xe máy. Chúng tôi
+                            chuyên cung cấp các dịch vụ bảo dưỡng, sửa chữa, thay thế phụ tùng cho các
+                            dòng xe máy Honda, Yamaha, Suzuki với chất lượng cao, giá cả hợp lý và thời
+                            gian nhanh chóng. Đội ngũ nhân viên của chúng tôi là những kỹ thuật viên giàu
+                            kinh nghiệm, nhiệt tình và tận tâm, luôn sẵn sàng phục vụ quý khách hàng một
+                            cách tốt nhất. Hãy đến với MotorMT để trải nghiệm sự khác biệt và an tâm khi sử dụng xe máy của bạn.
+                            <br> <br> Điện	thoại: 0312 456 789 <br> Email: motormt@gmail.com <br>
+                            Zalo: 0312 456 789 <br>
+                        </div>
+                    </article>
+
+                    <article
+                            class="footer__top-contact-wrap col-lg-6 col-md-4 col-sm-6">
+                        <h4 class="footer__top-contact-heading">Hotline liên hệ</h4>
+
+                        <div class="footer__top-contact">
+                            <div class="footer__top-contact-icon">
+                                <img th:src="@{image/phone_top.png}"
+                                     class="footer__top-contact-img">
+                            </div>
+
+                            <div class="footer__top-contact-phone-wrap">
+                                <div class="footer__top-contact-phone">0312 456 789</div>
+                                <div class="footer__top-contact-des">(Giải đáp thắc mắc
+                                    24/24)</div>
+                            </div>
+                        </div>
+
+                        <h4 class="footer__top-contact-heading">Kết nối với chúng
+                            tôi</h4>
+
+                        <div class="footer__top-contact-social">
+                            <a href="#" class="footer__top-contact-social-link"> <img
+                                    th:src="@{image/facebook.png}">
+                            </a> <a href="#" class="footer__top-contact-social-link"> <img
+                                th:src="@{image/youtube.png}">
+                        </a> <a href="#" class="footer__top-contact-social-link"> <img
+                                th:src="@{image/tiktok.png}">
+                        </a> <a href="#" class="footer__top-contact-social-link"> <img
+                                th:src="@{image/zalo.png}">
+                        </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </footer>
+</div>
+<script th:src="@{js/jq.js}"></script>
+<script th:src="@{js/index.js}"></script>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#logoutLink").on("click", function(e) {
+            e.preventDefault();
+            $("form[name='LogoutForm']").submit();
+        });
+    });
+</script>
+</body>
+</html>
