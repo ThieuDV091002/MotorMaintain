@@ -20,6 +20,6 @@ public interface SerRepository extends PagingAndSortingRepository<Ser, Integer>{
 	public void deleteById(Integer iDdichvu);
 	
 	@Query("SELECT s FROM Ser s WHERE s.tendichvu = :tendichvu")
-	public Ser getServiceByTendichvu(@Param("tendichvu") String tendichvu);
+	public Ser getSerByTendichvu(@Param("tendichvu") String tendichvu);
 	
 }

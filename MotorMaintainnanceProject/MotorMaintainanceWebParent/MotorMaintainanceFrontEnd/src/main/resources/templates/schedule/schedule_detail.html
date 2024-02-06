@@ -151,7 +151,7 @@
                             <a class="contact__self-link">Phương tiện:&emsp; [[${schedule.phuongtien}]]</a>
                         </li>
                         <li class="contact__self-item">
-                            <a class="contact__self-link">Thời gian đựt lịch:&emsp; [[${schedule.createAt}]]</a>
+                            <a class="contact__self-link">Thời gian đặt lịch:&emsp; [[${schedule.createdAt}]]</a>
                         </li>
                         <li class="contact__self-item">
                             <a class="contact__self-link">Ghi chú:&emsp; [[${schedule.notes}]]</a>
@@ -170,6 +170,9 @@
                         </tr>
                         </thead>
                         <tbody>
+                        	<td>[[${schedule.createdAt}]]</td>
+                            <td style="word-wrap: break-word;max-width: 250px;">Yêu cầu đang chờ được xử lý
+                            </td>
                         <tr th:each="track : ${schedule.scheduleTracks}">
                             <td>[[${track.updatedTime}]]</td>
                             <td style="word-wrap: break-word;max-width: 250px;">[[${track.notes}]]

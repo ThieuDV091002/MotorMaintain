@@ -26,7 +26,7 @@ public class SerController {
     private SerService Serservice;
     
     @GetMapping("/service")
-    public String listFirstBookPage(Model model) {
+    public String listFirstSerPage(Model model) {
         return listByPage(1, model, null);
     }
     
@@ -46,7 +46,7 @@ public class SerController {
     	model.addAttribute("totalItems", page.getTotalElements());
     	model.addAttribute("startCount", startCount);
     	model.addAttribute("endCount", endCount);
-    	model.addAttribute("listBooks", listSers);
+    	model.addAttribute("listSers", listSers);
     	model.addAttribute("keyword", keyword);
     	return "service/service";
     }
@@ -98,7 +98,7 @@ public class SerController {
 	}
     
 
-	@GetMapping("/service-edit-{IDdichvusach}")
+	@GetMapping("/service-edit-{IDdichvu}")
     public String editSer(@PathVariable(name = "IDdichvu") Integer IDdichvu, RedirectAttributes redirectAttributes, Model model) {
     	try {
     		Ser service = Serservice.get(IDdichvu);

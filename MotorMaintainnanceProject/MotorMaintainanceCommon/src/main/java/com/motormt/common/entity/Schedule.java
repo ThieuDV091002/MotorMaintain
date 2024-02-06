@@ -24,7 +24,7 @@ public class Schedule {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer IDschedule;
-	private Date requestTime;
+	private String requestTime;
 	private Date createdAt;
 	private String loaidv;
 	private String phuongtien;
@@ -40,7 +40,7 @@ public class Schedule {
 	
 	@OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
 	@OrderBy("updatedTime ASC")
-	private List<ScheduleTrack> requestTracks = new ArrayList<>();
+	private List<ScheduleTrack> scheduleTracks = new ArrayList<>();
 
 	public Integer getIDschedule() {
 		return IDschedule;
@@ -50,11 +50,11 @@ public class Schedule {
 		IDschedule = iDschedule;
 	}
 
-	public Date getRequestTime() {
+	public String getRequestTime() {
 		return requestTime;
 	}
 
-	public void setRequestTime(Date requestTime) {
+	public void setRequestTime(String requestTime) {
 		this.requestTime = requestTime;
 	}
 
@@ -98,16 +98,24 @@ public class Schedule {
 		this.account = account;
 	}
 
-	public List<ScheduleTrack> getRequestTracks() {
-		return requestTracks;
+	public List<ScheduleTrack> getScheduleTracks() {
+		return scheduleTracks;
 	}
 
-	public void setRequestTracks(List<ScheduleTrack> requestTracks) {
-		this.requestTracks = requestTracks;
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public void setScheduleTracks(List<ScheduleTrack> scheduleTracks) {
+		this.scheduleTracks = scheduleTracks;
 	}
 	
 	public boolean hasStatus(ScheduleStatus status) {
-		for(ScheduleTrack oTrack : requestTracks) {
+		for(ScheduleTrack oTrack : scheduleTracks) {
 			if(oTrack.getStatus().equals(status))
 				return true;
 		}

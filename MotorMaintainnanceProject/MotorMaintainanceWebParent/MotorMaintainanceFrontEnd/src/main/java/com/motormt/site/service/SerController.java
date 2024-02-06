@@ -42,7 +42,7 @@ public class SerController {
 		model.addAttribute("totalItems", pageSers.getTotalElements());
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("listResult", listResult);
-		return "book/search_result";
+		return "service/search_result";
 	}
 	
 	@GetMapping("/service-detail-{IDdichvu}")
@@ -52,7 +52,7 @@ public class SerController {
 			model.addAttribute("service", service);        
 			return "service/service_detail";
 		}catch(SerNotFoundException ex) {
-			return "redirect:book/search_result";
+			return "redirect:service/search_result";
 		}
 	}
 }

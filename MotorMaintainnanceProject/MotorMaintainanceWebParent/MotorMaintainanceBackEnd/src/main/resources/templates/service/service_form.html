@@ -153,7 +153,7 @@
 									<h5 class="card-header">Thông tin dịch vụ</h5>
 									<hr class="my-0" />
 									<div class="card-body">
-										<form th:action="@{service-save}" method="post"
+										<form th:action="@{service-save}" method="POST"
 											th:object="${service}" enctype="multipart/form-data"
 											onsubmit="return checkTendichvuUnique(this)">
 											<div class="row">
@@ -192,9 +192,10 @@
 														id="role" class="select2 form-select"
 														th:field="*{loaidv}">
 														<option value="" disabled>Lựa chọn phân loại</option>
-														<option value="Sách giáo khoa">Sách giáo khoa</option>
-														<option value="Kỹ năng sống">Kỹ năng sống</option>
-														<option value="Văn học">Văn học</option>
+														<option value="Bảo dưỡng định kỳ">Bảo dưỡng định kỳ</option>
+														<option value="Rửa xe">Rửa xe</option>
+														<option value="Sửa chữa lưu động">Sửa chữa lưu động</option>
+														<option value="Sửa chữa Giao- Nhận tại nhà">Sửa chữa Giao- Nhận tại nhà</option>
 													</select>
 												</div>
 												<div class="mb-3 col-md-6">
@@ -275,7 +276,7 @@
 		  url = "[[@{/service-check_tendichvu}]]"
 		  serviceTendichvu = $("#tendichvu").val()
 		  csrfValue = $("input[name='_csrf']").val()
-		  params = {tensach: serviceTendichvu, _csrf: csrfValue}
+		  params = {tendichvu: serviceTendichvu, _csrf: csrfValue}
 		  $.post(url, params, function(response){
 			  if(response == "OK"){
 				  form.submit()

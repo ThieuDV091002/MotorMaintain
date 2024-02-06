@@ -38,7 +38,7 @@ public class CustomerController {
 		String email = loggedAccount.getEmail();
 		Account account = service.getAccountByEmail(email);
 		model.addAttribute("account", account);
-		return "customer-update";
+		return "customer_update";
 	}
 	
 	@PostMapping("/customer-updatedetail")

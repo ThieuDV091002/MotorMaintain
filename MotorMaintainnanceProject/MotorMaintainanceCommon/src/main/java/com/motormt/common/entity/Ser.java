@@ -32,14 +32,14 @@ public class Ser {
 	public Ser() {
 	}
 	public Ser(Integer iDdichvu) {
-		IDdichvu = iDdichvu;
+		this.IDdichvu = iDdichvu;
 	}
 
 	public Integer getIDdichvu() {
 		return IDdichvu;
 	}
 	public void setIDdichvu(Integer iDdichvu) {
-		IDdichvu = iDdichvu;
+		this.IDdichvu = iDdichvu;
 	}
 	public String getHinhanh() {
 		return hinhanh;

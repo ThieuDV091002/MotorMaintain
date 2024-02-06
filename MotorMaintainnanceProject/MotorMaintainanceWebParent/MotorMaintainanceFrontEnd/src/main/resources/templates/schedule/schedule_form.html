@@ -135,7 +135,7 @@
                 <form th:action="@{/schedule-save}" method="POST"
                       th:object="${schedule}">
                     <p>Phương tiện</p>
-                    <input type="text" th:field="*{phuongiten}" required maxlength="128">
+                    <input type="text" th:field="*{phuongtien}" required maxlength="128">
 
                     <p>Thời gian</p>
                     <input type="date" th:field="*{requestTime}" required

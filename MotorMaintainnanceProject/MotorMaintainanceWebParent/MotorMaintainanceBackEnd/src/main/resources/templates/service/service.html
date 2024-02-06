@@ -168,7 +168,7 @@
 										<tr th:each="ser : ${listSers}">
 											<td><strong>[[${ser.IDdichvu}]]</strong></td>
 											<td>
-												<img th:if="${ser.hinhanh == null}" th:src="@{/image/noimage.png}" style="width: 150px; height: 150px">
+												<img th:if="${ser.hinhanh == null}" th:src="@{/image/noimage.jpg}" style="width: 150px; height: 150px">
 												<img th:if="${ser.hinhanh != null}" th:src="@{${ser.serPhotoPath}}" style="width: 150px; height: 150px">
 											</td>
 											<td>[[${ser.tendichvu}]]</td>
@@ -179,7 +179,7 @@
 												<a style="color: #697a8d" th:href="@{'service-detail-' + ${ser.IDdichvu}}">Xem chi tiết</a><br>
 												<a style="color: #697a8d" th:href="@{'service-delete-' + ${ser.IDdichvu}}">Xóa</a><br>
 												<a style="color: #697a8d" th:href="@{'service-edit-' + ${ser.IDdichvu}}" title="Sửa thông tin dịch vụ">Sửa thông tin</a><br>
-												<a style="color: #697a8d" id="buttonAddToCart">Thêm</a>
+												<button style="color: #697a8d" id="buttonAddToCart">Thêm</button>
 											</td>
 										</tr>
 									</tbody>
@@ -250,20 +250,21 @@
 	        });
 	    });
 	</script>
+
 	<script type="text/javascript">
 		contextPath = "[[@{/}]]"
-		IDsach = "[[${book.IDsach}]]"
+		IDdichvu = "[[${service.IDdichvu}]]"
 		var csrfHeaderName = "[[${_csrf.headerName}]]"
 		var csrfValue = "[[${_csrf.token}]]"
-
+		
 		$(document).ready(function(){
 			$("#buttonAddToCart").on("click", function(e){
 				addToCart()
 			})
 		})
-
+		
 		function addToCart() {
-			url= contextPath + "cart-add-" + IDsach
+			url= contextPath + "cart-add-" + IDdichvu
 			$.ajax({
 				type: "POST",
 				url: url,
@@ -271,10 +272,11 @@
 					xhr.setRequestHeader (csrfHeaderName, csrfValue)
 				}
 			}).done(function (response) {
-				alert(response)
+			showModalDialog("Giỏ hàng", response)
 			})
 		}
 	</script>
+	
 </body>
 
 </html>

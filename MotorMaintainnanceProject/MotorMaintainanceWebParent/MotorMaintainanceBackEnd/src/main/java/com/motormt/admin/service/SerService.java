@@ -71,7 +71,7 @@ public class SerService {
 	}
 	
 	public boolean isTendichvuUnique(String tendichvu) {
-		Ser serByTendichvu = repo.getServiceByTendichvu(tendichvu);
+		Ser serByTendichvu = repo.getSerByTendichvu(tendichvu);
 		return serByTendichvu == null;
 	}
 }

@@ -42,7 +42,7 @@ public class ScheduleService {
 		Schedule scheduleInDB = repo.findById(IDschedule).get();
 		ScheduleStatus statusToUpdate = ScheduleStatus.valueOf(status);
 		if(!scheduleInDB.hasStatus(statusToUpdate)) {
-			List<ScheduleTrack> scheduleTracks = scheduleInDB.getRequestTracks();
+			List<ScheduleTrack> scheduleTracks = scheduleInDB.getScheduleTracks();
 			ScheduleTrack track = new ScheduleTrack();
 			
 			track.setSchedule(scheduleInDB);

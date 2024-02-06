@@ -56,7 +56,7 @@ public class ScheduleController {
 		
 		model.addAttribute("endCount", endCount);
 		
-		return "schedule/schedule_customer";
+		return "schedule/schedule";
 	}
 	
 	@GetMapping("/schedule-detail-{IDschedule}")
@@ -65,7 +65,7 @@ public class ScheduleController {
 		Account account = getAuthenticatedAccount(httpRequest);
 		Schedule schedule = service.getByCustomerAndId(account, IDschedule);
 		
-		model.addAttribute("request", schedule);
+		model.addAttribute("schedule", schedule);
 		model.addAttribute("account", account);
 		
 		return "schedule/schedule_detail";
@@ -88,7 +88,7 @@ public class ScheduleController {
     	model.addAttribute("schedule", schedule);
 		model.addAttribute("account", account);
 		
-		return "schedule/schedule_customer";
+		return "schedule/schedule";
 	}
 	
 	private Account getAuthenticatedAccount(HttpServletRequest request) {
